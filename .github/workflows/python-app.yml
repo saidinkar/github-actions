@@ -2,7 +2,8 @@
 
 name: Python application
 
-on: [push]
+#on: [push]
+ on: workflow_call
 
 jobs:
   build:
@@ -10,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.8, 3.9]
         
     steps:
     - uses: actions/checkout@v3
@@ -22,9 +23,17 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest
-        
+#        pip install pytest
+    
+    - name: Run python scripts
+      run: |
+       python -m pip install requests
+       python addition.py
+
     - name: Run tests
       run: |
         cd src
         python -m pytest addition.py
+
+    - name: Build
+      run: 
