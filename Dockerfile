@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the Python script into the container
-COPY hello.py .
+COPY hello_world.py .
 
 # Define the default argument for the script (can be overridden during runtime)
-CMD ["python", "src.hello_world.py"]
+CMD ["python", "hello_world.py"]
